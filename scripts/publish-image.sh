@@ -10,6 +10,8 @@ fi
 repository=${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}
 image="ghcr.io/$(printf '%s' "$repository" | tr '[:upper:]' '[:lower:]')"
 
-docker build --tag "$image:$version" --tag "$image:latest" .
-docker push "$image:$version"
-docker push "$image:latest"
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  --tag "$image:$version" \
+  --tag "$image:latest" \
+  --push .
