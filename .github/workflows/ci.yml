@@ -22,8 +22,10 @@ jobs:
         run: |
           python -m unittest discover -s tests -v
           python -m py_compile exporter.py
-      - name: Build container
-        run: docker build -t cloudflare-traffic-exporter:test .
+      - uses: docker/setup-qemu-action@v4
+      - uses: docker/setup-buildx-action@v4
+      - name: Build amd64 and arm64 containers
+        run: docker buildx build --platform linux/amd64,linux/arm64 --output type=oci,dest=/tmp/cloudflare-traffic-exporter.tar .
 
   commits:
     runs-on: ubuntu-latest
@@ -81,6 +83,8 @@ jobs:
           node-version: 'lts/*'
           cache: npm
       - run: npm ci --ignore-scripts
+      - uses: docker/setup-qemu-action@v4
+      - uses: docker/setup-buildx-action@v4
       - name: Log in to GHCR
         run: echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
         env:

@@ -21,7 +21,7 @@ python3 exporter.py
 
 `GET /metrics` exposes Prometheus text; `GET /healthz` checks the HTTP process. Readiness of the analytics query is visible in `cloudflare_traffic_last_success_timestamp_seconds`. A failed query leaves the last count intact, so alert rules should require a recent last-success timestamp.
 
-Build a container with `docker build -t cloudflare-traffic-exporter:0.1.0 .`. Mount the token file at the configured path. No third-party Python packages are required.
+Build a container with `docker build -t cloudflare-traffic-exporter:local .`. Mount the token file at the configured path. No third-party Python packages are required. Published images contain `linux/amd64` and `linux/arm64` variants, so Kubernetes can pull the variant for each node.
 
 ## Configuration
 
