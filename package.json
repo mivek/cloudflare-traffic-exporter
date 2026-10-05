@@ -1,0 +1,14 @@
+{
+  "name": "cloudflare-traffic-exporter-release",
+  "private": true,
+  "description": "Release tooling for the Cloudflare traffic exporter",
+  "devDependencies": {
+    "@commitlint/cli": "21.2.3",
+    "@commitlint/config-conventional": "21.2.3",
+    "@semantic-release/commit-analyzer": "13.0.1",
+    "@semantic-release/exec": "7.1.0",
+    "@semantic-release/github": "12.0.10",
+    "@semantic-release/release-notes-generator": "14.1.1",
+    "semantic-release": "25.0.9"
+  }
+}
