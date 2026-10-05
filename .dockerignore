@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.releaserc.json
+__pycache__
+tests
+*.py[cod]
+.venv
+node_modules
+package*.json
+scripts
